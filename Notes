@@ -17,7 +17,7 @@ SQL => Structured Query Language
 
 DB structure: 
         ________________________________
-       |               DB               |
+       |______________DB________________|
        |  _________         _________   |
        | |   tb 1  |       |   tb 2  |  |      
        | |   Data  |       |   Data  |  |    
@@ -35,7 +35,7 @@ Tables:- Combination of rows and Columns.
 => CREATING OUR FIRST DATABASE:-
 
     CREATE DATABASE db_name; (For creation of DB).
-    DROP DATABASE db_name; (For removing of DB ).
+    DROP DATABASE db_name; (For Delete of DB ).
    
 => Creating our first Table > 
 
@@ -48,18 +48,90 @@ Tables:- Combination of rows and Columns.
 *__Eg. CREATE TABLE student(id INT PRIMARY KEY, name VARCHAR(50),age INT NOT NULL);__*
 
 => SQL DataTypes:-
+ ______________________________________________________________________________________________________
+|*__DATATYPE__* |*__Description__*                                                     |*__Usage__*    |
+|---------------|----------------------------------------------------------------------|---------------|
+|   CHAR        |   Sting(0-255),Can store character of fixed length                   |   CHAR(50)    |
+|   VARCHAR     |   string(0-255), can store characters up to given length             |   VARCHAR(50) |
+|   BLOB        |   string(0-65535), can store binary large object                     |   BLOB(1000)  |
+|   INT         |   integer(-2,147,483,648 to 2,147,483,647)                           |   INT         |
+|   TINYINT     |   integer(-128 to 127)                                               |   TINYINT     |
+|   BIGINT      |   integer(-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)   |   BIGINT      |
+|   BIT         |   can store x-bit values. x can range from 1 to 64                   |   BIT(2)      |
+|   FLOAT       |   Decimal number - with precision to 23 digits                       |   FLOAT       |
+|   DOUBLE      |   Decimal number - with 24 to 53 digits                              |   DOUBLE      |
+|   BOOLEAN     |   Boolean values 0 or 1                                              |   BOOLEAN     |
+|   DATE        |   date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31 |   DATE        |   
+|   YEAR        |   year in 4 digit format ranging from 1901 to 2155                   |   YEAR        |  
+|_______________|______________________________________________________________________|_______________|
+=> SIGNED AND UNSIGNED DATATYPE:-
+    Signed Datatype :- It can represent both positive and negative numbers. For example, a signed integer can represent 0, -25 and 25.
+    Unsigned Datatype :- It can only represent non-negative numbers (i.e. zero and positive numbers). For example, an unsigned integer can represent 0 and 25, but not -25.
 
-*__ DATATYPE__* |*__Description__*                                                     |*__Usage__*
-    CHAR        |   Sting(0-255),Can store character of fixed length                   |   CHAR(50)
-    VARCHAR     |   string(0-255), can store characters up to given length             |   VARCHAR(50)
-    BLOB        |   string(0-65535), can store binary large object                     |   BLOB(1000)
-    INT         |   integer(-2,147,483,648 to 2,147,483,647)                           |   INT
-    TINYINT     |   integer(-128 to 127)                                               |   TINYINT
-    BIGINT      |   integer(-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)   |   BIGINT
-    BIT         |   can store x-bit values. x can range from 1 to 64                   |   BIT(2)
-    FLOAT       |   Decimal number - with precision to 23 digits                       |   FLOAT
-    DOUBLE      |   Decimal number - with 24 to 53 digits                              |   DOUBLE
-    BOOLEAN     |   Boolean values 0 or 1                                              |   BOOLEAN
-    DATE        |   date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31 |   DATE       
-    YEAR        |   year in 4 digit format ranging from 1901 to 2155                   |   YEAR       
+ ==> By using Unsigned name we increase the limit of values by removing the -ive values to the positive ones e.g. int ( -128 to 127 ) convert in to Unsigned int ( 0 - 255 ).
+
+*__TYPES OF SQL COMMANDS__*
+
+1. DDL (Data Definition Language) :- Create, Alter, Rename, Truncate, Drop.
+2. DQL (Data Query Language) :- Select.
+3. DML (Data Manipulation Language) :- Insert, Update, Delete.
+4. DCL (Data Control Language) :- Grant and Revoke permission to Users.
+5. TCL (Transaction Control Language) :- Start Transaction ,Commit, Rollback. 
+
+*_DATABASE RELATED QUERIES_*
+
+    CREATE DATABASE db_name; (Create Database)
+    CREATE DATABASE IF NOT EXISTS db_name; (Create Database only if the Database not exists)
+
+    DROP DATABASE db_name; (Delete Database)
+    DROP DATABASE IF EXISTS db_name; (Delete Database if exists)
+
+    SHOW DATABASE; 
+    SHOW TABLE;
+
+*__TABLE RELATED QUERIES__*
+
+*_CREATE_*
+    CREATE TABLE table_name(
+        column_name1 datatype constraint,
+        column_name2 datatype constraint,
+    );
+
+    e.g.
+        CREATE TABLE student(
+            rollno INT PRIMARY KEY,
+            name VARCHAR(50),
+        );
+
+*_SELECT AND VIEW ALL COLUMNS_*
+    SELECT * FROM table_name; (Here * means all values.)
+
+    e.g.
+        SELECT * FROM student;
+
+*_INSERT_*
+    INSERT INTO table_name
+    (colname1, colname2)
+    VALUES
+    (col1_v1, col2_v1),
+    (col1_v2, col2_v2);
+
+    e.g.
+        INSERT INTO student
+        (rollno, name)
+        VALUES
+        (101, 'KARAN'),
+        (102, 'ARJUN');
+
+
+*__KEYS__* 
+
+    => There are 2 important keys.
+    1. Primary Key 
+    2. Foreign Key
     
+    |. Primary Key :- It is a colummn for set of columns in a table that uniquely identifies each row (a unique id).
+                      There is only 1 PK and it should be NOT null.
+    ||. Foreign Key :- A foreign key is a column (or a set of columns) in a table that refers to the Primary Key in another table.
+                       There can be multiple FKs.
+                       Fks can have duplicate & null values.
