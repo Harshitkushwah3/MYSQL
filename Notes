@@ -23,4 +23,43 @@ DB structure:
        | |   Data  |       |   Data  |  |    
        | |_________|       |_________|  |                                      
        |________________________________|
+     
+    Table contains interrelated data like college data and Company data.
+
+Tables:- Combination of rows and Columns.
+         Columns - Structure / Schema (DESIGN).
+         Rows -Show individual Data.
+
+*__Semicolon is the main part of writing the operation__*
+
+=> CREATING OUR FIRST DATABASE:-
+
+    CREATE DATABASE db_name; (For creation of DB).
+    DROP DATABASE db_name; (For removing of DB ).
+   
+=> Creating our first Table > 
+
+    USE db_name;
+    CREATE TABLE table_name(
+    column_name1 datatype constraint,
+    column_name2 datatype constraint,
+    column_name3 datatype constraint,
+    )
+*__Eg. CREATE TABLE student(id INT PRIMARY KEY, name VARCHAR(50),age INT NOT NULL);__*
+
+=> SQL DataTypes:-
+
+*__ DATATYPE__* |*__Description__*                                                     |*__Usage__*
+    CHAR        |   Sting(0-255),Can store character of fixed length                   |   CHAR(50)
+    VARCHAR     |   string(0-255), can store characters up to given length             |   VARCHAR(50)
+    BLOB        |   string(0-65535), can store binary large object                     |   BLOB(1000)
+    INT         |   integer(-2,147,483,648 to 2,147,483,647)                           |   INT
+    TINYINT     |   integer(-128 to 127)                                               |   TINYINT
+    BIGINT      |   integer(-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)   |   BIGINT
+    BIT         |   can store x-bit values. x can range from 1 to 64                   |   BIT(2)
+    FLOAT       |   Decimal number - with precision to 23 digits                       |   FLOAT
+    DOUBLE      |   Decimal number - with 24 to 53 digits                              |   DOUBLE
+    BOOLEAN     |   Boolean values 0 or 1                                              |   BOOLEAN
+    DATE        |   date in format of YYYY-MM-DD ranging from 1000-01-01 to 9999-12-31 |   DATE       
+    YEAR        |   year in 4 digit format ranging from 1901 to 2155                   |   YEAR       
     
