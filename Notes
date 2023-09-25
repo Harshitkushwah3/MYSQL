@@ -194,3 +194,109 @@ Tables:- Combination of rows and Columns.
             SELECT column_name1, column_name2 FROM table_name;
         To select all :-
             SELECT * FROM table_name;
+
+**__WHERE CLAUSE__** 
+    It is used to define some conditons.
+        Syntax :- 
+            SELECT column_name1, column_name2 FROM table_name WHERE condition;
+            e.g.
+                Select * from student where age>18; 
+                Select * from student where city='Mumbai';
+                Select * from student where age>18 AND city='Mumbai';
+                Select * from student where age>18 OR city='Mumbai';
+                Select * from student where age>18 OR city='Mumbai' AND name='Karan';
+                Select * from student where age>18 OR (city='Mumbai' AND name='Karan'); 
+    Operators in WHERE CLAUSE :-
+        Arithmetic Operators :- +(addition), -(subtraction), *(multiplication), /(division), %(modulus).
+        Comaprision Operators :- =(equal to),!=(not equal to),>,<,>=,<=.
+        Logical Operators :- AND, OR, NOT,IN, BETWEEN, LIKE, ALL, ANY, EXISTS etc.
+        Bitwise Operators :- &(bitwise AND), |(bitwise OR).
+
+    ==> OPERATOR (DETAIL) :-
+     . AND :- If all the conditions are true then only it will return the result.
+        Synatx:-
+            SELECT * FROM table_name WHERE condition1 AND condition2;
+            e.g.
+                Select * from student where age>18 AND city='Mumbai';
+                Select * from student where age>18 AND city='Mumbai' AND name='Karan';
+                Select * from student where age>18 AND (city='Mumbai' AND name='Karan');
+     
+     . OR :- If any one of the condition is true then it will return the result.   
+        Synatx:-
+            SELECT * FROM table_name WHERE condition1 OR condition2;
+            e.g.
+                Select * from student where age>18 OR city='Mumbai';
+                Select * from student where age>18 OR city='Mumbai' OR name='Karan';
+                Select * from student where age>18 OR (city='Mumbai' OR name='Karan');    
+     . BETWEEN :- Selects for a given range.   
+        Synatx:-
+            SELECT * FROM table_name WHERE column_name BETWEEN value1 AND value2;
+            e.g.
+                Select * from student where age BETWEEN 18 AND 25;
+     . IN :- Matches any Value in the list.
+        Synatx:-
+            SELECT *FROM table_name WHERE column_name IN (value1,value2,value3);
+            e.g.
+                Select * from student where age IN (18,20,22);
+     . NOT :- It is used to negate the given condition.
+        Synatx:-
+            SELECT * FROM table_name WHERE column_name NOT IN condition;
+            e.g.
+                Select * from student where city  NOT IN ("Delhi","Mumbai"); 
+
+**__LIMIT CLAUSE__**
+
+    It is used to set an upper limit on number of (tuples)rows to be returned.
+        Syntax :-
+            SELECT * FROM table_name LIMIT number;
+            e.g.
+                Select * from student LIMIT 3;
+                Select * from student LIMIT 3,5; (Here 3 is the starting point and 5 is the ending point)
+                Select * from student LIMIT 3 OFFSET 5; (Here 3 is the starting point and 5 is the ending point).
+
+**__ORDER BY CLAUSE__**
+
+    It is used to sort the result-set in ascending or descending order.
+        Syntax :-
+            SELECT * FROM table_name ORDER BY column_name ASC/DESC;
+            e.g.
+                Select * from student ORDER BY age ASC;
+                Select * from student ORDER BY age DESC;
+                Select * from student ORDER BY age ASC, name DESC;
+                Select * from student ORDER BY age DESC, name ASC;
+
+**__AGGREGATE FUNTIONS__**
+
+    It is used to perform calculations on a set of values and returns a single value.
+    Types:-
+        1. AVG() :- Returns the average value.  
+        2. SUM() :- Returns the sum of all values.
+        3. MIN() :- Returns the minimum value.
+        4. MAX() :- Returns the maximum value.
+        5. COUNT() :- Returns the number of rows.
+        6. COUNT(DISTINCT) :- Returns the number of distinct rows.
+        Syntax :-
+            SELECT function_name(column_name) FROM table_name;
+            e.g.
+                Select AVG(age) from student;
+                Select SUM(age) from student;
+                Select MIN(age) from student;
+                Select MAX(age) from student;
+                Select COUNT(age) from student;
+                Select COUNT(*) from student;
+                Select COUNT(DISTINCT age) from student;
+
+**__GROUP BY CLAUSE__**
+
+    It is used to group rows that have the same values into summary rows.
+    It collects data across multiple records and group the result by one or more columns.
+    => Generally we use GROUP BY  with some aggregate functions. 
+        Syntax :-
+            SELECT column_name1, function_name(column_name2) FROM table_name GROUP BY column_name1;
+            e.g.
+                Select city,  from student GROUP BY city;
+                Select city, COUNT(age) from student GROUP BY city;
+                Select city, COUNT(*) from student GROUP BY city;
+                Select city, COUNT(DISTINCT age) from student GROUP BY city;
+                Select city, name from student GROUP BY city,name;
+                 
