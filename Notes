@@ -135,3 +135,62 @@ Tables:- Combination of rows and Columns.
     ||. Foreign Key :- A foreign key is a column (or a set of columns) in a table that refers to the Primary Key in another table.
                        There can be multiple FKs.
                        Fks can have duplicate & null values.
+
+*__CONSTRAINTS__*
+
+    It is use to specify rules for data in a table.
+
+     . NOT NULL :- Column not have a null value => (Col1 int NOT NULL).
+
+     . UNIQUE :- All Values in column are different => (Col2 int UNIQUE).
+     
+     . PRIMARY KEY :- Makes a column unique & not null but used only once for one => (id int PRIMARY KEY).
+        e.g.
+          CREATE TABLE temp(
+            id INT,name VARCHAR(50),age INT,city VARCHAR(50),PRIMARY KEY(id)
+          )  => for single column PRIMARY KEY.
+
+        OR 
+          CREATE TABLE temp(
+            id INT,name VARCHAR(50),age INT,city VARCHAR(50),PRIMARY KEY(id,name)
+          )  => for multiple column PRIMARY KEY.
+     
+     . FOREIGN KEY :- It is used to link 2 tables together.
+                      Prevent action that would destroy links between tables.
+        e.g.
+          CREATE TABLE temp(
+            cust_id INT,name VARCHAR(50),age INT,city VARCHAR(50),PRIMARY KEY(id),
+            FOREIGN KEY(cust_id) REFERENCES student(id) => (Here id is the column name of student table)
+          )  => for single column FOREIGN KEY.
+
+        OR 
+          CREATE TABLE temp(
+            id INT,name VARCHAR(50),age INT,city VARCHAR(50),PRIMARY KEY(id),
+            FOREIGN KEY(id,name) REFERENCES student(id,name) => (Here id and name is the column name of student table)
+          )  => for multiple column FOREIGN KEY. 
+     
+     . DEFAULT :- It is used to set a default value for a column if no value is specified.
+        e.g.
+          CREATE TABLE temp(
+            id INT,name VARCHAR(50),age INT,city VARCHAR(50),PRIMARY KEY(id),
+            age INT DEFAULT 18
+          )  => for DEFAULT value.
+     
+     . CHECK :- It is used to limit the value range that can be placed in a column.
+        e.g.
+          CREATE TABLE temp(
+            id INT PRIMARY KEY ,name VARCHAR(50),age INT,city VARCHAR(50),
+            age INT,
+            CONSTRAINT age_check CHECK(age>=18 AND city='Mumbai')
+          )  => for CHECK value.
+           OR 
+             CREATE TABLE temp(
+                age INT CHECK (age>=18 AND city='Mumbai')
+                );  => for CHECK value.
+     
+**__SELECT IN DETAIL __**
+    It is used to fetch data from a database table which returns data in the form of result table.
+        Basic Syntax :-
+            SELECT column_name1, column_name2 FROM table_name;
+        To select all :-
+            SELECT * FROM table_name;
