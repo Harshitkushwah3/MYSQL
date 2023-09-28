@@ -300,3 +300,24 @@ Tables:- Combination of rows and Columns.
                 Select city, COUNT(DISTINCT age) from student GROUP BY city;
                 Select city, name from student GROUP BY city,name;
                  
+
+**__HAVING CALUSE__**
+    It is used to filter records that work on GROUP BY function.
+    It is similar to WHERE i.e. applies some condition on rows.
+    Used when we want to apply any condition after grouping.
+    e.g. :-
+        Count number of students in each city Where max marks cross 90.
+            SELECT count(name),city
+            FROM student
+            GROUP BY city
+            HAVING MAX(marks)>90;
+
+
+**__GENERAL ORDER FOR WRITING QUERY__**
+    SELECT column(s)
+    FROM table_name
+    WHERE condition
+    GROUP BY column(s)
+    HAVING condition
+    ORDER BY column(s)
+    LIMIT number; 
