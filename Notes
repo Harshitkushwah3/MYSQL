@@ -321,3 +321,164 @@ Tables:- Combination of rows and Columns.
     HAVING condition
     ORDER BY column(s)
     LIMIT number; 
+
+
+**__TABLE RELATED QUERIES__**
+    . UPDATE (to update existing rows)
+        UPDATE table_name
+        SET column1 = value1, column2 = value2, ...
+        WHERE condition;
+        e.g. :-
+            UPDATE student
+            SET age = 20, city = 'Delhi'
+            WHERE name = 'Karan';
+    
+    ==>> THERE IS SAFE MODE IN MYSQL WHICH IS USED TO PREVENT ACCIDENTAL UPDATE OR DELETE OF TABLES.
+        Syntax :-
+            SET SQL_SAFE_UPDATES = 0;(Here 0 indicate OFF and 1 indicate ON)
+
+    . DELETE (to delete existing rows)
+        DELETE FROM table_name 
+        WHERE condition;
+        e.g. :-
+            DELETE FROM student 
+            WHERE name = 'Karan';
+    ==>> If we use only DELETE FROM table_name then it will delete all the rows of the table.
+
+    . TRUNCATE (to delete all rows from a table)
+        TRUNCATE TABLE table_name;
+        e.g. :-
+            TRUNCATE TABLE student;
+    
+    . ALTER (to add, delete, modify columns in an existing table)
+        ALTER TABLE table_name
+        ADD column_name datatype;
+        e.g. :-
+            ALTER TABLE student
+            ADD email VARCHAR(50);
+        
+        ALTER TABLE table_name
+        DROP COLUMN column_name;
+        e.g. :-
+            ALTER TABLE student
+            DROP COLUMN email;
+        
+        ALTER TABLE table_name
+        MODIFY COLUMN column_name datatype;
+        e.g. :-
+            ALTER TABLE student
+            MODIFY COLUMN age INT(3);
+        
+        ALTER TABLE table_name
+        CHANGE COLUMN old_name new_name datatype;
+        e.g. :-
+            ALTER TABLE student
+            CHANGE COLUMN age age1 INT(3);
+        
+        ALTER TABLE table_name
+        RENAME TO new_table_name;
+        e.g. :-
+            ALTER TABLE student
+            RENAME TO student1;
+
+
+**__REVISTING FOREIGN KEYS__**
+
+    Cascade for Foreign key :- 
+        ON UPDATE CASCADE :- It is used to update the rows from the child table when the rows from the parent table are updated.
+            Syntax :- 
+                CREATE TABLE table_name(
+                    column_name1 datatype constraint,
+                    column_name2 datatype constraint,
+                    column_name3 datatype constraint,
+                    FOREIGN KEY(column_name1) REFERENCES parent_table_name(column_name1) ON UPDATE CASCADE
+                );
+                e.g. :-
+                    CREATE TABLE student(
+                        id INT PRIMARY KEY,
+                        name VARCHAR(50),
+                        age INT,
+                        city VARCHAR(50),
+                        FOREIGN KEY(id) REFERENCES student_marks(id) ON UPDATE CASCADE
+                    );
+
+        ON DELETE CASCADE :- It is used to delete the rows from the child table when the rows from the parent table are deleted.
+            Syntax :-
+                CREATE TABLE table_name(
+                    column_name1 datatype constraint,
+                    column_name2 datatype constraint,
+                    column_name3 datatype constraint,
+                    FOREIGN KEY(column_name1) REFERENCES parent_table_name(column_name1) ON DELETE CASCADE
+                );
+                e.g. :-
+                    CREATE TABLE student(
+                        id INT PRIMARY KEY,
+                        name VARCHAR(50),
+                        age INT,
+                        city VARCHAR(50),
+                        FOREIGN KEY(id) REFERENCES student_marks(id) ON DELETE CASCADE
+                    );
+
+**__JOINS IN SQL__**
+    
+        It is used to combine rows from two or more tables based on a related column between them.
+        Types :-
+            1. INNER JOIN :- It returns the records that have matching values in both tables.
+                Syntax :-
+                    SELECT column_name(s)
+                    FROM table1
+                    INNER JOIN table2
+                    ON table1.column_name = table2.column_name;
+                    e.g. :-
+                        SELECT student.name, student_marks.marks
+                        FROM student
+                        INNER JOIN student_marks
+                        ON student.id = student_marks.id;
+            
+            2. LEFT JOIN :- It returns all the records from the left table and the matched records from the right table.
+                Syntax :-
+                    SELECT column_name(s)
+                    FROM table1
+                    LEFT JOIN table2
+                    ON table1.column_name = table2.column_name;
+                    e.g. :-
+                        SELECT student.name, student_marks.marks
+                        FROM student
+                        LEFT JOIN student_marks
+                        ON student.id = student_marks.id;
+            
+            3. RIGHT JOIN :- It returns all the records from the right table and the matched records from the left table.
+                Syntax :-
+                    SELECT column_name(s)
+                    FROM table1
+                    RIGHT JOIN table2
+                    ON table1.column_name = table2.column_name;
+                    e.g. :-
+                        SELECT student.name, student_marks.marks
+                        FROM student
+                        RIGHT JOIN student_marks
+                        ON student.id = student_marks.id;
+            
+            4. FULL JOIN :- It returns all the records when there is a match in either left or right table.
+                Syntax :-
+                    SELECT column_name(s)
+                    FROM table1
+                    FULL JOIN table2
+                    ON table1.column_name = table2.column_name;
+                    e.g. :-
+                        SELECT student.name, student_marks.marks
+                        FROM student
+                        FULL JOIN student_marks
+                        ON student.id = student_marks.id;
+            
+            5. SELF JOIN :- It is used to join a table to itself as if the table were two tables, temporarily renaming at least one table in the SQL statement.
+                Syntax :-
+                    SELECT column_name(s)
+                    FROM table1 T1, table1 T2
+                    WHERE condition;
+                    e.g. :-
+                        SELECT A.name, B.name, A.age
+                        FROM student A, student B
+                        WHERE A.age = B.age;
+            
+            6. CROSS JOIN :- It is used to combine each row from the first table with each row from
