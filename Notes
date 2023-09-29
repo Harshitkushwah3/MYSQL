@@ -482,3 +482,60 @@ Tables:- Combination of rows and Columns.
                         WHERE A.age = B.age;
             
             6. CROSS JOIN :- It is used to combine each row from the first table with each row from
+
+
+**__UNIONS__**
+    It is used to combine the result set of two or morw SELECT statements.
+    It removes duplicate rows between the various SELECT statements.
+    To use it:
+        1. Each SELECT statement within UNION must have the same number of columns.
+        2. The columns must also have similar data types.
+        3. The columns in each SELECT statement must also be in the same order.
+    Syntax :-
+        SELECT column_name(s) FROM table1
+        UNION
+        SELECT column_name(s) FROM table2;
+        e.g. :-
+            SELECT name FROM student
+            UNION
+            SELECT name FROM student_marks;
+
+**__SQL SUBQUERIES__**
+    A subquery or inner query or a nested query is a query within another SQL query.
+    It is used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.
+    It is used to perform an action that will provide a value for use in the main query.
+    Syntax :-
+        SELECT column_name(s)
+        FROM table_name
+        WHERE column_name operator
+        (SELECT column_name
+        FROM table_name
+        WHERE condition);
+        e.g. :-
+            SELECT name, age
+            FROM student
+            WHERE age IN
+            (SELECT age
+            FROM student_marks
+            WHERE marks > 90);
+
+**__SQL VIEWS__**
+    It is a virtual table based on the result-set of an SQL statement.
+    It contains rows and columns just like a real table.
+    The fields in a view are fields from one or more real tables in the database.
+    You can add SQL functions, WHERE, and JOIN statements to a view and present the data as if the data were coming from one single table.
+    Syntax :-
+        CREATE VIEW view_name AS
+        SELECT column_name(s)
+        FROM table_name
+        WHERE condition;
+        e.g. :-
+            CREATE VIEW student_marks_view AS
+            SELECT name, marks
+            FROM student
+            WHERE marks > 90;
+    
+    To view a view :-
+        SELECT * FROM view_name;
+        e.g. :-
+            SELECT * FROM student_marks_view;
